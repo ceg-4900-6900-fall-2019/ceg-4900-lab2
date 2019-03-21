@@ -7,10 +7,10 @@ from netaddr import IPNetwork,IPAddress
 from ctypes import *
 
 # host to listen on
-host   = "192.168.0.187"
+host   = "192.168.1.121"
 
 # subnet to target
-subnet = "192.168.0.0/24"
+subnet = "192.168.1.0/24"
 
 # magic we'll check ICMP responses for
 magic_message = "PYTHONRULES!"
@@ -37,8 +37,8 @@ class IP(Structure):
         ("ttl",           c_ubyte),
         ("protocol_num",  c_ubyte),
         ("sum",           c_ushort),
-        ("src",           c_ulong),
-        ("dst",           c_ulong)
+        ("src",           c_uint32),
+        ("dst",           c_uint32)
     ]
     
     def __new__(self, socket_buffer=None):
@@ -50,8 +50,8 @@ class IP(Structure):
         self.protocol_map = {1:"ICMP", 6:"TCP", 17:"UDP"}
         
         # human readable IP addresses
-        self.src_address = socket.inet_ntoa(struct.pack("<L",self.src))
-        self.dst_address = socket.inet_ntoa(struct.pack("<L",self.dst))
+        self.src_address = socket.inet_ntoa(struct.pack("@I",self.src))
+        self.dst_address = socket.inet_ntoa(struct.pack("@I",self.dst))
     
         # human readable protocol
         try:
@@ -107,7 +107,7 @@ try:
         raw_buffer = sniffer.recvfrom(65565)[0]
         
         # create an IP header from the first 20 bytes of the buffer
-        ip_header = IP(raw_buffer[0:20])
+        ip_header = IP(raw_buffer)
       
         #print "Protocol: %s %s -> %s" % (ip_header.protocol, ip_header.src_address, ip_header.dst_address)
     

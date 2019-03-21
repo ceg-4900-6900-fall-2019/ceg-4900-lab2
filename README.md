@@ -24,6 +24,15 @@ Useful linux commands related to this lab:
 * `/code` directory in this repository
 
 ### Task 1
+Read about [the most common types of port scans on
+wikipedia](https://en.wikipedia.org/wiki/Port_scanner#Types)
+
+Implement the following in nmap.
+
+https://null-byte.wonderhowto.com/how-to/hack-like-pro-advanced-nmap-for-reconnaissance-0151619/
+
+Use `code/scaner.py`.
+
 
 
 
