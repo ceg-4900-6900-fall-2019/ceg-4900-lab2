@@ -8,6 +8,7 @@ from ctypes import *
 
 # host to listen on
 host   = "192.168.1.121"
+PORT = 65212
 
 # subnet to target
 subnet = "192.168.1.0/24"
@@ -20,7 +21,7 @@ def udp_sender(subnet,magic_message):
     
     for ip in IPNetwork(subnet):
         try:
-            sender.sendto(magic_message,("%s" % ip,65212))
+            sender.sendto(magic_message,("%s" % ip,PORT))
         except:
             pass
         
