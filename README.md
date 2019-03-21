@@ -26,13 +26,13 @@ Useful linux commands related to this lab:
 * [Lab 2 AWS creation link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=CEG-4900Lab02&templateURL=https:%2F%2Fs3.amazonaws.com%2Fwsu-cecs-cf-templates%2Fceg4900lab1.yml)
 * `/code` directory in this repository
 
-### Task 1 - Learning `nmap`
+### Learning `nmap`
 `nmap` short for network mapper is an open source tool for network exploration
-and security auditing (`man nmap`).  A typical `nmap` scan has to primary phases, *Host
+and security auditing (`man nmap`).  A typical `nmap` scan has two primary phases, *Host
 Discovery* and *Port Scanning*.  If you are interested in more details about
-nmap phases [your can read mode about them in the nmap online book](https://nmap.org/book/nmap-phases.html).
+nmap phases [you can read mode about them in the nmap online book](https://nmap.org/book/nmap-phases.html).
 
-#### Host Discovery
+#### Task 1 - Host Discovery
 The purpose of host discovery is to discover whether or not a host (computer) is connected
 to the network at a given IP address.  Since modern computers have over 65,000
 available ports to connect to it saves us a lot of time if we can rule out IP
@@ -75,34 +75,65 @@ to execute it on your Ubuntu Public machine).
    may need to tweak the filter a little).
 9. Compare your `scanner.py` usage and your `nmap` command from above.  Did they
    both take the same amount of time?  Require the same permissions?  How did
-   your tow pcap files compare?
+   your two pcap files compare?
 0. How would you capture the response packets from `scanner.py` and your above
-   nmap with `tcpdump`?  Test your theory.
+   nmap with `tcpdump`?  Try this out and document your results.
 
-#### Port 
-Perform the same on home network.  Why does `scanner.py` miss several machines?
-take a look at the pcap file for your home network for scanner.py, was there any
-machines that your scanner.py did not identify?  Try nmap.  Did this identify
-those machines?  Can you capture the traffice from nmap?  is it over the correct
-port that you specified?
+#### Task 2 - Port Scanning
+In class we covered the basic nmap scan against a single target using `nmap -A`
+which is a great way to enable Operating System detection, version detection,
+script scans, and traceroute.  The one drawback of this is it can take a long
+time to complete depending on the size of the network and how many hosts are
+active.  Investigate the following using the `nmap` man page and by scanning
+your Ubuntu Private host:
 
-now that we are done with host discovery lets move on to port scans.
-Scan AWS for open ports.  Takes a while dont it?  Scan your local network for
-open ports.  Are there any devices on your network you dont recognize?  Are
-there any ports listentning that you were not aware of?  Explain
+* `nmap -F`
+* `nmap -sS`
+* `nmap -sT`
+* `nmap -sU`
+
+1. Describe what each command does.  How does the output differ between
+   commands?  Do they all require the same level of permissions to run?  Is
+   their output the same (do they find the same services)?
+2. Using [the National Vulnerability
+   Database](https://nvd.nist.gov/General/News/CPE-Range-Notification) Find the
+   CPE for the specific service and version numbers for each of the open ports
+   on Ubuntu Private.  Document these here.
+3. How many CVEs are there for each CPE?  Do any of these CVEs allow for remote
+   code execution?
+
+#### Task 3 - Advanced usage
+##### Decoy scanning
+While `nmap` allows us to spoof our IP address with the `-S` option (packets
+generated will have our spoofed IP as the source instead of our actual IP
+address), this does us no good because the response traffic gets sent to the
+spoofed IP.  Luckily `nmap` also allows us to 
 
 
-https://null-byte.wonderhowto.com/how-to/hack-like-pro-advanced-nmap-for-reconnaissance-0151619/
+#### Task 4 - Bringing it all home
+Using your home network (or a friend / family members home network) with
+permission!!!modify and run the `code/scanner.py` and your above nmap
+equivalent (you'll need a linux VM like we configured in class).  Compare the
+results.
 
-Use `code/scaner.py`.
+1. Do they both find the same number of systems? (mine did not)...  Why or why
+   not?
+2. Create a pcap file of both scans.  Does the pcap file for `scanner.py` show
+   more machines than  
+3. Perform a more detailed scan of your home network using `nmap -A`. Are there
+   any devices on your network you dont recognize?  
+   Are there any ports listentning that you were not aware of?  Explain
 
-Read about [the most common types of port scans on
-wikipedia](https://en.wikipedia.org/wiki/Port_scanner#Types)
+
+
 
 
 ### Acknowledgement
 Portions of this lab were derived from [Black Hat Python: Python Programming for
 Hackers and Pentesters, by Justin Seitz](https://nostarch.com/blackhatpython).
 
-##### Links
+Read about [the most common types of port scans on
+wikipedia](https://en.wikipedia.org/wiki/Port_scanner#Types)
 
+Read more [Advacned Nmap reconnaissance](https://null-byte.wonderhowto.com/how-to/hack-like-pro-advanced-nmap-for-reconnaissance-0151619/)
+from null-byte website.
