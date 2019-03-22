@@ -23,7 +23,7 @@ Useful linux commands related to this lab:
   installed on your home network), see labtalk in pilot for recommendations
   on software to set up a virtual machine.
 * [AWS educate (Login link)](https://www.awseducate.com/signin/SiteLogin)
-* [Lab 2 AWS creation link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=CEG-4900Lab02&templateURL=https:%2F%2Fs3.amazonaws.com%2Fwsu-cecs-cf-templates%2Fceg4900lab1.yml)
+* [Lab 2 AWS creation link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=CEG-4900Lab02&templateURL=https:%2F%2Fs3.amazonaws.com%2Fwsu-cecs-cf-templates%2Fceg4900lab2.yml)
 * `/code` directory in this repository
 
 ### Learning `nmap`
