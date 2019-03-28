@@ -174,7 +174,10 @@ results.
 1. Do they both find the same number of systems? (mine did not)...  Why or why
    not?
 2. Create a pcap file of both scans.  Does the pcap file for `scanner.py` show
-   more machines than  
+   more machines than the output of the `scanner.py` returned?
+   (On my network there were several machines that I could see respond to the
+   `scanner.py` in the pcap file that the `scanner.py` execution did not return.
+   These machines did show up in an `nmap` however...)
 3. Perform a more detailed scan of your home network using `nmap -A`. Are there
    any devices on your network you dont recognize?  
    Are there any ports listentning that you were not aware of?  Explain
