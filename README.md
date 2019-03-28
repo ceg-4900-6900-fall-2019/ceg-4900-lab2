@@ -91,13 +91,13 @@ your Ubuntu Private host:
 * `nmap -sS`
 * `nmap -sT`
 * `nmap -sU`
-* `nmap -V`
+* `nmap -sV`
 
 1. Describe what each command does.  How does the output differ between
    commands?  Do they all require the same level of permissions to run?  Is
    their output the same (do they find the same services)?
 2. Using [the National Vulnerability
-   Database](https://nvd.nist.gov/General/News/CPE-Range-Notification) Find the
+   Database](https://nvd.nist.gov/products/cpe/search) Find the
    CPE for the specific service and version numbers for each of the open ports
    on Ubuntu Private.  Document these here.
 3. How many CVEs are there for each CPE?  Do any of these CVEs allow for remote
